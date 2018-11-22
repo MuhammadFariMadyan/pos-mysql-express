@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>    
+  <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Data Siswa</h1>    
+    <h1>Data Siswa</h1>
+    <table>
+      <thead>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>Kelas</th>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < siswas.length; i++){ %>
+          <tr>
+            <td><%= siswas[i].nama %></td>
+            <td><%= siswas[i].alamat %></td>
+            <td><%= siswas[i].kelas %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
   </body>
 </html>
