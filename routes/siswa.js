@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+const { checkAuth } = require('../middlewares/auth')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', checkAuth, function(req, res, next) {
   const user = req.session.user
   models.Siswa.findAll().then(siswas => {
     res.render('siswa/index',{siswas: siswas, user: user})
@@ -17,7 +18,7 @@ router.get('/create', (req, res) => {
   res.render('siswa/create')
 });
 
-router.post('/create', (req, res) => {
+router.post('/create', checkAuth, (req, res) => {
   const { nama, alamat, kelas } = req.body
   models.Siswa.create({nama, alamat, kelas}).then(siswa => {
     res.redirect('/siswas')
