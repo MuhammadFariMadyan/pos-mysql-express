@@ -35,4 +35,16 @@ router.post('/login', (req, res) => {
   })
 });
 
+router.get('/logout', (req, res) => {
+  // req.session.user = null
+  req.session.destroy(function(err) {
+    // cannot access session here
+    if(err){
+      console.log(err)
+    }else {
+      res.redirect('/users/login')
+    }
+  })
+})
+
 module.exports = router;
