@@ -26,6 +26,33 @@ router.post('/create', (req, res) => {
   })
 });
 
+router.get('/edit/:id', (req, res) => {
+  const siswaId = req.params.id
+  models.Siswa.findOne({where: {id: siswaId}}).then(siswa => {
+    res.render('siswa/edit', {siswa: siswa})
+  }).catch(err => {
+    console.log(err)
+    res.redirect('/siswas')
+  })
+});
+
+router.post('/edit/:id',(req, res) => {
+  const siswaId = req.params.id
+  const { nama, alamat, kelas } = req.body
+  models.Siswa.findOne({where: {id: siswaId}}).then(siswa => {
+    return siswa.update({
+      nama,
+      alamat,
+      kelas
+    })
+  }).then(updateSiswa => {
+    res.redirect('/siswas')
+  }).catch(err => {
+    console.log(err)
+    res.redirect('/siswas')
+  })
+});
+
 router.get('/delete/:id', (req, res) => {
   const siswaId = req.params.id
   models.Siswa.findOne({where: { id: siswaId}}).then(siswa => {
