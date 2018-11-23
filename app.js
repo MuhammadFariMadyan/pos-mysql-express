@@ -7,7 +7,7 @@ const session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var siswasRouter = require('./routes/siswa');
+var siswasRouter = require('./routes/siswas');
 
 var app = express();
 
