@@ -22,6 +22,9 @@ router.post('/login', (req, res) => {
     if(user != null){
       const checkPassword = bcrypt.compareSync(password, user.password); // true
       if(checkPassword === true){
+        req.session.user = {
+          username: user.username
+        }
         res.redirect('/siswas')
       }else {
         res.redirect('/users/login')

@@ -4,8 +4,9 @@ var models = require('../models');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  const user = req.session.user
   models.Siswa.findAll().then(siswas => {
-    res.render('siswa/index',{siswas: siswas})
+    res.render('siswa/index',{siswas: siswas, user: user})
   }).catch(err => {
     console.log(err)
     res.render('siswa/index')
