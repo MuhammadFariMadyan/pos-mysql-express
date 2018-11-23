@@ -12,6 +12,20 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/create', (req, res) => {
+  res.render('siswa/create')
+});
+
+router.post('/create', (req, res) => {
+  const { nama, alamat, kelas } = req.body
+  models.Siswa.create({nama, alamat, kelas}).then(siswa => {
+    res.redirect('/siswas')
+  }).catch(err => {
+    console.log(err)
+    res.redirect('/siswas')
+  })
+});
+
 router.get('/delete/:id', (req, res) => {
   const siswaId = req.params.id
   models.Siswa.findOne({where: { id: siswaId}}).then(siswa => {
