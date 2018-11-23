@@ -12,4 +12,15 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/delete/:id', (req, res) => {
+  const siswaId = req.params.id
+  models.Siswa.findOne({where: { id: siswaId}}).then(siswa => {
+    return siswa.destroy()
+  }).then(siswa => {
+    res.redirect('/siswas')
+  }).catch(err => {
+    console.log(err)
+  })
+});
+
 module.exports = router;

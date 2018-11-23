@@ -10,6 +10,7 @@
         <th>Nama</th>
         <th>Alamat</th>
         <th>Kelas</th>
+        <th>Aksi</th>
       </thead>
       <tbody>
         <% for(let i = 0; i < siswas.length; i++){ %>
@@ -17,6 +18,7 @@
             <td><%= siswas[i].nama %></td>
             <td><%= siswas[i].alamat %></td>
             <td><%= siswas[i].kelas %></td>
+            <td><a href="/siswas/delete/<%= siswas[i].id %>">Hapus</a></td>
           </tr>
         <% } %>
       </tbody>
